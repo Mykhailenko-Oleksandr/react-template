@@ -1,5 +1,21 @@
+"use client";
+
 import css from "./Loader.module.css";
 
-export default function Loader() {
-  return <p className={css.text}>Loading movies, please wait...</p>;
+type Props = {
+  size?: number;
+  backdrop?: boolean;
+};
+
+export default function Loader({ size = 72, backdrop = true }: Props) {
+  return (
+    <div
+      className={backdrop ? css.backdrop : css.wrapper}
+      style={{ "--size": `${size}px` } as React.CSSProperties}>
+      <div className={css.spinner}>
+        <span className={css.outer} />
+        <span className={css.inner} />
+      </div>
+    </div>
+  );
 }
